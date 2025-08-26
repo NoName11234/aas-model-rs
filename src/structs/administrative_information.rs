@@ -9,7 +9,7 @@ pub struct AdministrativeInformation {
     ///The optional revision of the element.
     revision: Option<String>,
     ///The optional subject ID of the subject responsible for making the element.
-    creator: Option<String>,
+    creator: Option<Reference>,
     ///The optional identifier of the template that guided the creation of the element.
     template_id: Option<String>,
     data_specifications: Vec<Reference>,
@@ -51,12 +51,12 @@ impl AdministrativeInformation {
 
     ///Sets the creator subject ID of the subject responsible for making the element.
     /// [creator]: creator subject ID
-    pub fn set_creator(&mut self, creator: String) {
+    pub fn set_creator(&mut self, creator: Reference) {
         self.creator = Some(creator);
     }
 
     ///Returns the optional creator subject ID of the subject responsible for making the element.
-    pub fn get_creator(&self) -> Option<&String> {
+    pub fn get_creator(&self) -> Option<&Reference> {
         self.creator.as_ref()
     }
 
