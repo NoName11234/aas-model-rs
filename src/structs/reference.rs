@@ -9,10 +9,7 @@ pub struct Reference {
 }
 
 impl Reference {
-    pub fn new(reference_type: ReferenceType, key: Key) -> Reference {
-        let mut keys: Vec<Key> = Vec::new();
-        keys.push(key);
-
+    pub fn new(reference_type: ReferenceType, keys: Vec<Key>) -> Reference {
         Reference {
             reference_type,
             referred_semantic_id: None,
