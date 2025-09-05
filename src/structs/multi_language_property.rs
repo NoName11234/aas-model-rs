@@ -15,7 +15,7 @@ use crate::traits::submodel_element::TSubmodelElement;
 #[derive(PartialEq, Clone)]
 pub struct MultiLanguageProperty {
     ///Optional value of the property instance.
-    value: Option<MultiLanguageTextType>,
+    value: Vec<MultiLanguageTextType>,
     ///Optional reference to the global unique ID of a coded value.
     value_id: Option<Reference>,
     category: Option<String>,
@@ -33,7 +33,7 @@ impl MultiLanguageProperty {
     ///Creates a new instance of a struct of a multi-language property.
     pub fn new() -> MultiLanguageProperty {
         MultiLanguageProperty {
-            value: None,
+            value: Vec::new(),
             value_id: None,
             category: None,
             id_short: None,
@@ -50,13 +50,26 @@ impl MultiLanguageProperty {
     ///Sets the value of the multi-language property instance.
     ///
     /// [value]: value of the multi-language property instance
-    pub fn set_value(&mut self, value: MultiLanguageTextType) {
-        self.value = Some(value);
+    pub fn set_value(&mut self, value: Vec<MultiLanguageTextType>) {
+        self.value = value;
     }
 
     ///Returns the value of the multi-language property instance.
-    pub fn get_value(&self) -> Option<&MultiLanguageTextType> {
-        self.value.as_ref()
+    pub fn get_value(&self) -> &Vec<MultiLanguageTextType> {
+        &self.value
+    }
+
+    ///Adds a value to the multi-language property instance.
+    /// 
+    /// [value]: the value to be added
+    pub fn add_value(&mut self, value: MultiLanguageTextType) {
+        self.value.push(value);
+    }
+
+    ///Removes a value from the multi-language property instance specified by an index.
+    /// Returns the removed value.
+    pub fn remove_value(&mut self, index: usize) -> MultiLanguageTextType {
+        self.value.remove(index)
     }
 
     ///Sets the reference to the global unique ID of a coded value.
