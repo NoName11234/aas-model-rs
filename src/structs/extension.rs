@@ -1,5 +1,4 @@
 use crate::enumerations::data_type_def_xsd::DataTypeDefXsd;
-use crate::enumerations::interface_enumerations::referable::Referable;
 use crate::structs::reference::Reference;
 use crate::traits::has_semantics::THasSemantics;
 
@@ -13,7 +12,7 @@ pub struct Extension {
     ///The optional value of the extension.
     value: Option<String>,
     ///List of references to an element the extension refers to.
-    refers_to: Vec<Referable>,
+    refers_to: Vec<Reference>,
     semantic_id: Option<Reference>,
     supplemental_semantic_ids: Vec<Reference>
 }
@@ -67,24 +66,24 @@ impl Extension {
 
     ///Sets the list of references to elements the extension refers to.
     /// [refers_to]: list of references
-    pub fn set_refers_to(&mut self, refers_to: Vec<Referable>) {
+    pub fn set_refers_to(&mut self, refers_to: Vec<Reference>) {
         self.refers_to = refers_to;
     }
 
     ///Returns the list of references to elements the extension refers to.
-    pub fn get_refers_to(&self) -> &Vec<Referable> {
+    pub fn get_refers_to(&self) -> &Vec<Reference> {
         &self.refers_to
     }
 
     ///Adds a reference to an element the extension refers to.
     /// [refers_to]: reference to an element
-    pub fn add_refers_to(&mut self, refers_to: Referable) {
+    pub fn add_refers_to(&mut self, refers_to: Reference) {
         self.refers_to.push(refers_to);
     }
 
     ///Removes a reference to an element from the list.
     /// [index]: index of the reference
-    pub fn remove_refers_to(&mut self, index: usize) -> Referable {
+    pub fn remove_refers_to(&mut self, index: usize) -> Reference {
         self.refers_to.remove(index)
     }
 }
