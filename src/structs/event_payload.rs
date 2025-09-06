@@ -1,22 +1,29 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::reference::Reference;
 
 ///Defines the necessary information of an event instance sent out or received.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct EventPayload {
     ///Reference to the source event element.
     source: Reference,
     ///Optional semantic ID of the source event element if available.
+    #[serde(rename = "sourceSemanticId")]
     source_semantic_id: Option<Reference>,
     ///Reference to the referable which defines the scope of the event.
+    #[serde(rename = "observableReference")]
     observable_reference: Reference,
     ///Optional semantic ID of the referable which defines the scope of the event if available.
+    #[serde(rename = "observableSemanticId")]
     observable_semantic_id: Option<Reference>,
     ///Optional information for the outer message infrastructure to schedule the event for the respective
     ///communication channel.
     topic: Option<String>,
     ///Optional subject who/which initiated the creation.
+    #[serde(rename = "subjectId")]
     subject_id: Option<Reference>,
     ///Timestamp in UTC when this event was triggered.
+    #[serde(rename = "timeStamp")]
     time_stamp: String,
     ///Optional event-specific payload.
     payload: Vec<u8>

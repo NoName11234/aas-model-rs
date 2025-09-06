@@ -1,10 +1,13 @@
+use serde::{Deserialize, Serialize};
+
 ///A resource represents an address to a file (a locator). The value is a URI that can represent an
 /// absolute or relative path.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Resource {
     ///Path and name of the resource (with file extension).
     path: String,
     ///Content type of the content of the file.
+    #[serde(rename = "contentType")]
     content_type: Option<String>
 }
 

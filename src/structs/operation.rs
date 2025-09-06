@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
 use crate::structs::multi_language_text_type::MultiLanguageTextType;
@@ -12,21 +14,30 @@ use crate::traits::referable::TReferable;
 use crate::traits::submodel_element::TSubmodelElement;
 
 ///An operation is a submodel element with input and output variables.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Operation {
     ///Optional input parameter of the operation.
+    #[serde(rename = "inputVariables")]
     input_variables: Vec<OperationVariable>,
     ///Optional output parameters of the operation.
+    #[serde(rename = "outputVariables")]
     output_variables: Vec<OperationVariable>,
     ///Optional parameter that is input and output of the operation.
-    inoutput_variables: Vec<OperationVariable>,category: Option<String>,
+    #[serde(rename = "inoutputVariables")]
+    inoutput_variables: Vec<OperationVariable>,
+    category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::interface_enumerations::submodel_element::SubmodelElement;
 use crate::enumerations::modelling_kind::ModellingKind;
 use crate::structs::administrative_information::AdministrativeInformation;
@@ -15,19 +17,26 @@ use crate::traits::qualifiable::TQualifiable;
 use crate::traits::referable::TReferable;
 
 ///A submodel defines a specific aspect of the asset represented by the Asset Administration Shell.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Submodel {
     ///List of submodel elements a submodel consists of.
+    #[serde(rename = "submodelElements")]
     submodel_elements: Vec<SubmodelElement>,
+    #[serde(rename = "administration")]
     administrative_information: Option<AdministrativeInformation>,
     id: String,
     kind: Option<ModellingKind>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>

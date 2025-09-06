@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
 use crate::structs::multi_language_text_type::MultiLanguageTextType;
@@ -13,21 +15,27 @@ use crate::traits::submodel_element::TSubmodelElement;
 
 ///A file is a data element that represents an address to a file (a locator). The value is a URI
 /// that can represent an absolute or relative path.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct File {
     ///The optional path and name of the file (with file extension). The path can be absolute or
     /// relative.
     value: Option<String>,
     ///The optional content type of the content of the file.
+    #[serde(rename = "contentType")]
     content_type: Option<String>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

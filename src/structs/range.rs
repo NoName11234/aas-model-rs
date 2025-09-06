@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::data_type_def_xsd::DataTypeDefXsd;
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
@@ -13,22 +15,28 @@ use crate::traits::referable::TReferable;
 use crate::traits::submodel_element::TSubmodelElement;
 
 ///A range data element is a data element that defines a range with min and max.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Range {
     ///Data type of the min and max attributes.
+    #[serde(rename = "valueType")]
     value_type: DataTypeDefXsd,
     ///The minimum value of the range.
     min: Option<String>,
     ///The maximum value of the range.
     max: Option<String>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

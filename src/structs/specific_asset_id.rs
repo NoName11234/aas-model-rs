@@ -1,9 +1,11 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::reference::Reference;
 use crate::traits::has_semantics::THasSemantics;
 
 ///A struct for a specific asset ID which describes a generic supplementary identifying attribute
 /// of the asset.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct SpecificAssetId {
     ///The name of the asset identifier.
     name: String,
@@ -11,8 +13,11 @@ pub struct SpecificAssetId {
     value: String,
     ///The unique ID of the (external) subject the specific asset ID value belongs to or has meaning
     /// to.
+    #[serde(rename = "externalSubjectId")]
     external_subject_id: Option<Reference>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>
 }
 

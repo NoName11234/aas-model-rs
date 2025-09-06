@@ -1,19 +1,25 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::data_type_def_xsd::DataTypeDefXsd;
 use crate::structs::reference::Reference;
 use crate::traits::has_semantics::THasSemantics;
 
 ///A single extension of an element.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Extension {
     ///The name of the extension.
     name: String,
     ///The optional data type of the value attribute of the extension.
+    #[serde(rename = "valueType")]
     value_type: Option<DataTypeDefXsd>,
     ///The optional value of the extension.
     value: Option<String>,
     ///List of references to an element the extension refers to.
+    #[serde(rename = "refersTo")]
     refers_to: Vec<Reference>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>
 }
 

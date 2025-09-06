@@ -1,5 +1,7 @@
+use serde::{Deserialize, Serialize};
+
 ///Enumeration of submodel element types including abstract submodel element types.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub enum AasSubmodelElements {
     SubmodelElement,
     AnnotatedRelationshipElement,

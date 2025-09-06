@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::data_type_def_xsd::DataTypeDefXsd;
 use crate::enumerations::qualifier_kind::QualifierKind;
 use crate::structs::reference::Reference;
@@ -5,19 +7,24 @@ use crate::traits::has_semantics::THasSemantics;
 
 ///Struct representing a qualifier which is a type-value-pair. Depending on the kind of qualifier it
 /// makes additional statements about its value, concept or existence and other meta information.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Qualifier {
     ///The optional qualifier kind describes the kind of qualifier that is applied to the element.
     kind: Option<QualifierKind>,
     ///The qualifier type describes the type of qualifier that is applied to the element.
+    #[serde(rename = "type")]
     qualifier_type: String,
     ///The data type of the qualifier value.
+    #[serde(rename = "valueType")]
     value_type: DataTypeDefXsd,
     ///The optional qualifier value is the value of the qualifier.
     value: Option<String>,
     ///An optional reference to the global unique ID of a coded value.
+    #[serde(rename = "valueId")]
     value_id: Option<Reference>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>
 }
 

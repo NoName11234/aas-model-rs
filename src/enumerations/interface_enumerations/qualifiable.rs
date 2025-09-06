@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::annotated_relationship_element::AnnotatedRelationshipElement;
 use crate::structs::basic_event_element::BasicEventElement;
 use crate::structs::blob::Blob;
@@ -16,7 +18,8 @@ use crate::structs::submodel_element_collection::SubmodelElementCollection;
 use crate::structs::submodel_element_list::SubmodelElementList;
 use crate::traits::qualifiable::TQualifiable;
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
+#[serde(tag = "modelType")]
 pub enum Qualifiable {
     AnnotatedRelationshipElement(AnnotatedRelationshipElement),
     BasicEventElement(BasicEventElement),

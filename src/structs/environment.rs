@@ -1,15 +1,19 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::asset_administration_shell::AssetAdministrationShell;
 use crate::structs::concept_description::ConceptDescription;
 use crate::structs::submodel::Submodel;
 
 ///Container for the sets of different identifiables.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Environment {
     ///Asset administration shells.
+    #[serde(rename = "assetAdministrationShells")]
     asset_administration_shells: Vec<AssetAdministrationShell>,
     ///Submodels.
     submodels: Vec<Submodel>,
     ///Concept descriptions.
+    #[serde(rename = "conceptDescriptions")]
     concept_descriptions: Vec<ConceptDescription>
 }
 

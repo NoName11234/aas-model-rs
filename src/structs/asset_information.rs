@@ -1,20 +1,27 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::asset_kind::AssetKind;
 use crate::structs::resource::Resource;
 use crate::structs::specific_asset_id::SpecificAssetId;
 
 ///Struct for identifying metadata of the asset that is represented by an asset administration shell.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct AssetInformation {
     ///Denotes whether the asset is of kind type, instance, role or none of these types.
+    #[serde(rename = "assetKind")]
     asset_kind: AssetKind,
     ///Optional identifier of the asset, the asset administration shell is representing.
+    #[serde(rename = "globalAssetId")]
     global_asset_id: Option<String>,
     ///Additional domain specific, typically proprietary identifiers for the asset like serial number,
     /// manufacturer part ID, customer part ID...
+    #[serde(rename = "specificAssetIds")]
     specific_asset_ids: Vec<SpecificAssetId>,
     ///The type of asset.
+    #[serde(rename = "assetType")]
     asset_type: Option<String>,
     ///Optional thumbnail of the asset represented by the asset administration shell.
+    #[serde(rename = "defaultThumbnail")]
     default_thumbnail: Option<Resource>
 }
 

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
 use crate::structs::multi_language_text_type::MultiLanguageTextType;
@@ -13,20 +15,26 @@ use crate::traits::submodel_element::TSubmodelElement;
 
 ///A blob is a data element representing a file that is contained in the value attribute with its
 /// source code.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Blob {
     ///The optional value of the blob instance of a blob data element.
     value: Vec<u8>,
     ///The optional content type of the content of the blob.
+    #[serde(rename = "contentType")]
     content_type: Option<String>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

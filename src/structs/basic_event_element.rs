@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::direction::Direction;
 use crate::enumerations::interface_enumerations::referable::Referable;
 use crate::enumerations::state_of_event::StateOfEvent;
@@ -15,7 +17,7 @@ use crate::traits::referable::TReferable;
 use crate::traits::submodel_element::TSubmodelElement;
 
 ///A basic event element.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct BasicEventElement {
     ///Reference to a referable, e.g. a data element or a submodel that is being observed.
     observed: Reference,
@@ -25,23 +27,32 @@ pub struct BasicEventElement {
     state: StateOfEvent,
     ///Information for the outer message infrastructure to schedule the event for the respective
     /// communication channel.
+    #[serde(rename = "messageTopic")]
     message_topic: Option<String>,
     ///Information about which outer message infrastructure shall handle messages for the event
     /// element.
+    #[serde(rename = "messageBroker")]
     message_broker: Option<Referable>,
     ///Optional timestamp in UTC when the last event was received or sent.
+    #[serde(rename = "lastUpdate")]
     last_update: Option<String>,
     ///Optional maximum frequency the software entity behind the referable/the outer infrastructure
     /// can handle events.
+    #[serde(rename = "minInterval")]
     min_interval: Option<String>,
     ///Optional maximum output interval.
+    #[serde(rename = "maxInterval")]
     max_interval: Option<String>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
     specifications: Vec<Reference>

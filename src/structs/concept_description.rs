@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::administrative_information::AdministrativeInformation;
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
@@ -10,16 +12,21 @@ use crate::traits::referable::TReferable;
 
 ///The semantics of a property or other elements that may have a semantic description is defined by
 /// a concept description.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct ConceptDescription {
     ///List of references to external definitions the concept is compatible to or was derived from.
+    #[serde(rename = "isCaseOf")]
     is_case_of: Vec<Reference>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "administration")]
     administrative_information: Option<AdministrativeInformation>,
     id: String
 }

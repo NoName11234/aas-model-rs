@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::administrative_information::AdministrativeInformation;
 use crate::structs::annotated_relationship_element::AnnotatedRelationshipElement;
 use crate::structs::asset_administration_shell::AssetAdministrationShell;
@@ -19,7 +21,8 @@ use crate::structs::submodel_element_collection::SubmodelElementCollection;
 use crate::structs::submodel_element_list::SubmodelElementList;
 use crate::traits::has_data_specification::THasDataSpecification;
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
+#[serde(tag = "modelType")]
 pub enum HasDataSpecification {
     BasicEventElement(BasicEventElement),
     Capability(Capability),

@@ -1,8 +1,10 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::interface_enumerations::submodel_element::SubmodelElement;
 
 ///The value of an operation variable is a submodel element that is used as input and/or output
 /// variable of an operation.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct OperationVariable {
     ///Describes an argument or result of an operation via a submodel element.
     value: SubmodelElement

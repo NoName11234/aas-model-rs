@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::aas_submodel_elements::AasSubmodelElements;
 use crate::enumerations::data_type_def_xsd::DataTypeDefXsd;
 use crate::enumerations::interface_enumerations::submodel_element::SubmodelElement;
@@ -14,26 +16,34 @@ use crate::traits::referable::TReferable;
 use crate::traits::submodel_element::TSubmodelElement;
 
 ///A submodel element list is an ordered list of submodel elements.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct SubmodelElementList {
     ///Defines whether order in list is relevant.
+    #[serde(rename = "orderRelevant")]
     order_relevant: Option<bool>,
     ///Submodel elements contained in the list.
-    values: Vec<SubmodelElement>,
+    value: Vec<SubmodelElement>,
     ///Optional semantic ID which the submodel elements contained in the list match.
+    #[serde(rename = "semanticIdListElement")]
     semantic_id_list_element: Option<Reference>,
     ///The submodel element type of the submodel elements contained in the list.
     type_value_list_element: AasSubmodelElements,
     ///Optional value type of the submodel element contained in the list.
+    #[serde(rename = "valueTypeListElement")]
     value_type_list_element: Option<DataTypeDefXsd>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 
@@ -42,7 +52,7 @@ impl SubmodelElementList {
     pub fn new(type_value_list_element: AasSubmodelElements) -> SubmodelElementList {
         SubmodelElementList {
             order_relevant: None,
-            values: Vec::new(),
+            value: Vec::new(),
             semantic_id_list_element: None,
             type_value_list_element,
             value_type_list_element: None,
@@ -73,23 +83,23 @@ impl SubmodelElementList {
     ///Sets the list of submodel elements contained in the list.
     ///
     /// [values]: list of submodel elements
-    pub fn set_values(&mut self, values: Vec<SubmodelElement>) {
-        self.values = values;
+    pub fn set_value(&mut self, values: Vec<SubmodelElement>) {
+        self.value = values;
     }
 
     ///Returns the list of submodel elements contained in the list.
-    pub fn get_values(&self) -> &Vec<SubmodelElement> {
-        &self.values
+    pub fn get_value(&self) -> &Vec<SubmodelElement> {
+        &self.value
     }
 
     ///Adds a submodel element to the list.
     pub fn add_value(&mut self, value: SubmodelElement) {
-        self.values.push(value);
+        self.value.push(value);
     }
 
     ///Removes a submodel element from the list.
     pub fn remove_value(&mut self, index: usize) -> SubmodelElement {
-        self.values.remove(index)
+        self.value.remove(index)
     }
 
     ///The semantic ID which the submodel elements contained in the list match.

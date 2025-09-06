@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::entity_type::EntityType;
 use crate::enumerations::interface_enumerations::submodel_element::SubmodelElement;
 use crate::structs::extension::Extension;
@@ -14,26 +16,34 @@ use crate::traits::referable::TReferable;
 use crate::traits::submodel_element::TSubmodelElement;
 
 ///An entity is a submodel element that is used to model entities.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Entity {
     ///Optional statements applicable to the entity, each statement described by submodel element -
     /// typically with a qualified value
     statements: Vec<SubmodelElement>,
     ///Describes whether the entity is a co-managed entity or a self-managed entity. Optional.
+    #[serde(rename = "entityType")]
     entity_type: Option<EntityType>,
     ///Optional global identifier of the asset the entity is representing.
+    #[serde(rename = "globalAssetId")]
     global_asset_id: Option<String>,
     ///Optional references to a specific asset ID representing a supplementary identifier of the asset
     /// represented by the Asset Administration Shell.
+    #[serde(rename = "specificAssetIds")]
     specific_asset_ids: Vec<SpecificAssetId>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

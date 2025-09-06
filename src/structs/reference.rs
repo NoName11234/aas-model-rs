@@ -1,9 +1,13 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::reference_type::ReferenceType;
 use crate::structs::key::Key;
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Reference {
+    #[serde(rename = "type")]
     reference_type: ReferenceType,
+    #[serde(rename = "referredSemanticId")]
     referred_semantic_id: Option<Box<Reference>>,
     keys: Vec<Key>
 }

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
 use crate::structs::multi_language_text_type::MultiLanguageTextType;
@@ -13,20 +15,25 @@ use crate::traits::submodel_element::TSubmodelElement;
 
 ///A reference element is a data element that defines a logical reference to another element within
 /// the same or another Asset Administration Shell or a reference to an external object or entity.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct ReferenceElement {
     ///External reference to an external object or entity or a logical reference to another element
     /// within the same or another Asset Administration Shell (i.e. a model reference to a
     /// Referable)
     value: Option<Reference>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 

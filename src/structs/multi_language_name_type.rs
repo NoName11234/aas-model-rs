@@ -1,4 +1,6 @@
-#[derive(PartialEq, Clone)]
+use serde::{Deserialize, Serialize};
+
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct MultiLanguageNameType {
     language: String,
     text: String

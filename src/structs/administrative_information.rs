@@ -1,8 +1,10 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::reference::Reference;
 use crate::traits::has_data_specification::THasDataSpecification;
 
 ///Administrative information for an element like version information.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct AdministrativeInformation {
     ///The optional version of the element.
     version: Option<String>,
@@ -11,7 +13,9 @@ pub struct AdministrativeInformation {
     ///The optional subject ID of the subject responsible for making the element.
     creator: Option<Reference>,
     ///The optional identifier of the template that guided the creation of the element.
+    #[serde(rename = "templateId")]
     template_id: Option<String>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>,
 }
 

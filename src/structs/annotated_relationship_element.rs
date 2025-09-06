@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::interface_enumerations::data_element::DataElement;
 use crate::structs::extension::Extension;
 use crate::structs::multi_language_name_type::MultiLanguageNameType;
@@ -14,19 +16,24 @@ use crate::traits::submodel_element::TSubmodelElement;
 
 ///An annotated relationship element is a relationship element that can be annotated with additional
 /// data elements.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct AnnotatedRelationshipElement {
     ///Data elements that represent annotations that holds for the relationship between the two
     /// elements.
     annotations: Vec<DataElement>,
     category: Option<String>,
+    #[serde(rename = "idShort")]
     id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "semanticId")]
     semantic_id: Option<Reference>,
+    #[serde(rename = "supplementalSemanticIds")]
     supplemental_semantic_ids: Vec<Reference>,
     qualifiers: Vec<Qualifier>,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>,
     first: Option<Reference>,
     second: Option<Reference>,

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::structs::administrative_information::AdministrativeInformation;
 use crate::structs::asset_information::AssetInformation;
 use crate::structs::extension::Extension;
@@ -10,22 +12,27 @@ use crate::traits::identifiable::TIdentifiable;
 use crate::traits::referable::TReferable;
 
 ///A struct representing an asset administration shell.
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct AssetAdministrationShell {
     ///Optional reference to the asset administration shell which the asset administration shell
     /// was derived from.
     derived_from: Option<Reference>,
     ///Meta information about the asset, the asset administration shell is representing.
+    #[serde(rename = "assetInformation")]
     asset_information: AssetInformation,
     ///List of references to submodels of the asset administration shell.
     submodels: Vec<Reference>,
     category: Option<String>,
-    id_shortcut: Option<String>,
+    #[serde(rename = "idShort")]
+    id_short: Option<String>,
+    #[serde(rename = "displayName")]
     display_name: Option<MultiLanguageNameType>,
     description: Option<MultiLanguageTextType>,
     extensions: Vec<Extension>,
+    #[serde(rename = "administration")]
     administrative_information: Option<AdministrativeInformation>,
     id: String,
+    #[serde(rename = "embeddedDataSpecifications")]
     data_specifications: Vec<Reference>
 }
 
@@ -39,7 +46,7 @@ impl AssetAdministrationShell {
             asset_information,
             submodels: Vec::new(),
             category: None,
-            id_shortcut: None,
+            id_short: None,
             display_name: None,
             description: None,
             extensions: Vec::new(),
@@ -106,11 +113,11 @@ impl TReferable for AssetAdministrationShell {
     }
 
     fn set_id_short(&mut self, id_short: String) {
-        self.id_shortcut = Some(id_short);
+        self.id_short = Some(id_short);
     }
 
     fn get_id_short(&self) -> Option<&String> {
-        self.id_shortcut.as_ref()
+        self.id_short.as_ref()
     }
 
     fn set_display_name(&mut self, display_name: MultiLanguageNameType) {

@@ -1,3 +1,5 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::interface_enumerations::data_element::DataElement;
 use crate::enumerations::interface_enumerations::submodel_element::SubmodelElement;
 use crate::structs::annotated_relationship_element::AnnotatedRelationshipElement;
@@ -21,7 +23,8 @@ use crate::structs::submodel_element_collection::SubmodelElementCollection;
 use crate::structs::submodel_element_list::SubmodelElementList;
 use crate::traits::referable::TReferable;
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
+#[serde(tag = "modelType")]
 pub enum Referable {
     AnnotatedRelationshipElement(AnnotatedRelationshipElement),
     AssetAdministrationShell(AssetAdministrationShell),

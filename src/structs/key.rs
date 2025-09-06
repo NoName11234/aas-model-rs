@@ -1,8 +1,12 @@
+use serde::{Deserialize, Serialize};
+
 use crate::enumerations::key_type::KeyType;
 
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Serialize, Deserialize)]
 pub struct Key {
+    #[serde(rename = "type")]
     key_type: KeyType,
+    #[serde(rename = "value")]
     value: String
 }
 
