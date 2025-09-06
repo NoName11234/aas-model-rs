@@ -1,4 +1,4 @@
-use serde::{de, Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 
 use crate::enumerations::interface_enumerations::data_element::DataElement;
 use crate::structs::extension::Extension;
