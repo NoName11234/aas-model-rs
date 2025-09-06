@@ -37,8 +37,8 @@ pub struct Submodel {
     #[serde(rename = "idShort")]
     id_short: Option<String>,
     #[serde(rename = "displayName")]
-    display_name: Option<MultiLanguageNameType>,
-    description: Option<MultiLanguageTextType>,
+    display_name: Vec<MultiLanguageNameType>,
+    description: Vec<MultiLanguageTextType>,
     extensions: Vec<Extension>
 }
 
@@ -57,8 +57,8 @@ impl Submodel {
             data_specifications: Vec::new(),
             category: None,
             id_short: None,
-            display_name: None,
-            description: None,
+            display_name: Vec::new(),
+            description: Vec::new(),
             extensions: Vec::new()
         }
     }
@@ -105,20 +105,36 @@ impl TReferable for Submodel {
         self.id_short.as_ref()
     }
 
-    fn set_display_name(&mut self, display_name: MultiLanguageNameType) {
-        self.display_name = Some(display_name);
+    fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
+        self.display_name = display_name;
     }
 
-    fn get_display_name(&self) -> Option<&MultiLanguageNameType> {
-        self.display_name.as_ref()
+    fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
+        &self.display_name
     }
 
-    fn set_description(&mut self, description: MultiLanguageTextType) {
-        self.description = Some(description);
+    fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
+        self.display_name.push(display_name);
     }
 
-    fn get_description(&self) -> Option<&MultiLanguageTextType> {
-        self.description.as_ref()
+    fn remove_display_name(&mut self, index: usize) -> MultiLanguageNameType {
+        self.display_name.remove(index)
+    }
+
+    fn set_description(&mut self, description: Vec<MultiLanguageTextType>) {
+        self.description = description;
+    }
+
+    fn get_description(&self) -> &Vec<MultiLanguageTextType> {
+        &self.description
+    }
+
+    fn add_description(&mut self, description: MultiLanguageTextType) {
+        self.description.push(description);
+    }
+
+    fn remove_description(&mut self, index: usize) -> MultiLanguageTextType {
+        self.description.remove(index)
     }
 }
 
