@@ -15,7 +15,7 @@ use crate::traits::submodel_element::TSubmodelElement;
 /// named values.
 #[derive(PartialEq, Clone)]
 pub struct SubmodelElementCollection {
-    values: Vec<SubmodelElement>,
+    value: Vec<SubmodelElement>,
     category: Option<String>,
     id_short: Option<String>,
     display_name: Option<MultiLanguageNameType>,
@@ -31,7 +31,7 @@ impl SubmodelElementCollection {
     ///Creates a new instance of a struct of a submodel element collection.
     pub fn new() -> SubmodelElementCollection {
         SubmodelElementCollection {
-            values: Vec::new(),
+            value: Vec::new(),
             category: None,
             id_short: None,
             display_name: None,
@@ -48,24 +48,24 @@ impl SubmodelElementCollection {
     ///
     /// [value]: list of submodel elements
     pub fn set_value(&mut self, values: Vec<SubmodelElement>) {
-        self.values = values;
+        self.value = values;
     }
 
     ///Returns the list of submodel elements contained in the collection.
     pub fn get_value(&self) -> &Vec<SubmodelElement> {
-        &self.values
+        &self.value
     }
 
     ///Adds a submodel element to the collection.
     pub fn add_value(&mut self, value: SubmodelElement) {
-        self.values.push(value);
+        self.value.push(value);
     }
 
     ///Removes a submodel element from the collection.
     ///
     /// [index]: index of the submodel element to remove
     pub fn remove_value(&mut self, index: usize) -> SubmodelElement {
-        self.values.remove(index)
+        self.value.remove(index)
     }
 }
 
