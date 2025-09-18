@@ -8,4 +8,6 @@ pub trait THasKind {
     fn set_kind(&mut self, kind: ModellingKind);
     ///Returns the optional kind of the element.
     fn get_kind(&self) -> Option<&ModellingKind>;
+    ///Returns the optional mutable kind of the element.
+    fn get_kind_mut(&mut self) -> Option<&mut ModellingKind>;
 }

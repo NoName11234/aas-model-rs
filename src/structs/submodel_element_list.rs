@@ -80,6 +80,11 @@ impl SubmodelElementList {
         self.order_relevant.as_ref()
     }
 
+    ///Returns mutable bool whether order in list is relevant.
+    pub fn get_mut_order_relevant(&mut self) -> Option<&mut bool> {
+        self.order_relevant.as_mut()
+    }
+
     ///Sets the list of submodel elements contained in the list.
     ///
     /// [values]: list of submodel elements
@@ -90,6 +95,11 @@ impl SubmodelElementList {
     ///Returns the list of submodel elements contained in the list.
     pub fn get_value(&self) -> &Vec<SubmodelElement> {
         &self.value
+    }
+
+    ///Returns the mutable list of submodel elements contained in the list.
+    pub fn get_mut_value(&mut self) -> &mut Vec<SubmodelElement> {
+        &mut self.value
     }
 
     ///Adds a submodel element to the list.
@@ -114,6 +124,11 @@ impl SubmodelElementList {
         self.semantic_id_list_element.as_ref()
     }
 
+    ///Returns the mutable semantic ID which the submodel elements contained in the list match.
+    pub fn get_mut_semantic_id_list_element(&mut self) -> Option<&mut Reference> {
+        self.semantic_id_list_element.as_mut()
+    }
+
     ///Sets the submodel element type of the submodel elements contained in the list.
     ///
     /// [type_value_list_element]: submodel element type
@@ -124,6 +139,11 @@ impl SubmodelElementList {
     ///Returns the submodel element type of the submodel elements contained in the list.
     pub fn get_type_value_list_element(&self) -> &AasSubmodelElements {
         &self.type_value_list_element
+    }
+
+    ///Returns the mutable submodel element type of the submodel elements contained in the list.
+    pub fn get_mut_type_value_list_element(&mut self) -> &mut AasSubmodelElements {
+        &mut self.type_value_list_element
     }
 
     ///Sets the value type of the submodel element contained in the list.
@@ -137,6 +157,11 @@ impl SubmodelElementList {
     pub fn get_value_type_list_element(&self) -> Option<&DataTypeDefXsd> {
         self.value_type_list_element.as_ref()
     }
+
+    ///Returns the mutable value type of the submodel element contained in the list.
+    pub fn get_mut_value_type_list_element(&mut self) -> Option<&mut DataTypeDefXsd> {
+        self.value_type_list_element.as_mut()
+    }
 }
 
 impl TReferable for SubmodelElementList {
@@ -148,6 +173,10 @@ impl TReferable for SubmodelElementList {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -156,12 +185,20 @@ impl TReferable for SubmodelElementList {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -180,6 +217,10 @@ impl TReferable for SubmodelElementList {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -192,6 +233,10 @@ impl TReferable for SubmodelElementList {
 impl THasExtensions for SubmodelElementList {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -208,12 +253,16 @@ impl THasExtensions for SubmodelElementList {
 }
 
 impl THasSemantics for SubmodelElementList {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
+    }
+
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
     }
 
     fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
@@ -224,8 +273,12 @@ impl THasSemantics for SubmodelElementList {
         &self.supplemental_semantic_ids
     }
 
-    fn add_supplemental_semantic_id(&mut self, supplemental_semantic_id: Reference) {
-        self.supplemental_semantic_ids.push(supplemental_semantic_id);
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
+    }
+
+    fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {
+        self.supplemental_semantic_ids.push(semantic_id);
     }
 
     fn remove_supplemental_semantic_id(&mut self, index: usize) -> Reference {
@@ -242,6 +295,10 @@ impl TQualifiable for SubmodelElementList {
         &self.qualifiers
     }
 
+    fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        &mut self.qualifiers
+    }
+
     fn add_qualifier(&mut self, qualifier: Qualifier) {
         self.qualifiers.push(qualifier);
     }
@@ -254,6 +311,10 @@ impl TQualifiable for SubmodelElementList {
 impl THasDataSpecification for SubmodelElementList {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {

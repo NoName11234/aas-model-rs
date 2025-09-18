@@ -10,6 +10,8 @@ pub trait TReferable: THasExtensions {
     fn set_category(&mut self, category: String);
     ///Returns the category which is a value that gives further meta information.
     fn get_category(&self) -> Option<&String>;
+    ///Returns the mutable category which is a value that gives further meta information.
+    fn get_mut_category(&mut self) -> Option<&mut String>;
     ///Sets the short ID of the element. In case of identifiables, this attribute is a short name of
     /// the element. In case of a referable, this ID is an identifying string of the element within
     /// its name space.
@@ -20,12 +22,18 @@ pub trait TReferable: THasExtensions {
     /// of the element. In case of a referable, this ID is an identifying string of the element
     /// within its name space.
     fn get_id_short(&self) -> Option<&String>;
+    ///Returns the mutable short ID of the element. In case of identifiables, this attribute is a
+    /// short name of the element. In case of a referable, this ID is an identifying string of the
+    /// element within its name space.
+    fn get_mut_id_short(&mut self) -> Option<&mut String>;
     ///Sets the display name of the element. Can be provided in several languages.
     /// 
     /// [display_name]: display name of the element in several languages
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>);
     ///Returns the display name of the element. Can be provided in several languages.
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType>;
+    ///Returns the mutable display name of the element. Can be provided in several languages.
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType>;
     ///Adds a display name in a specific language to the element.
     /// 
     /// [display_name]: display name to be added
@@ -38,6 +46,8 @@ pub trait TReferable: THasExtensions {
     fn set_description(&mut self, description: Vec<MultiLanguageTextType>);
     ///Returns the description of the element. Can be provided in several languages.
     fn get_description(&self) -> &Vec<MultiLanguageTextType>;
+    ///Returns the mutable description of the element. Can be provided in several languages.
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType>;
     ///Adds a description in a specific language to the element.
     /// 
     /// [description]: description to be added

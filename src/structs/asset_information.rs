@@ -49,6 +49,11 @@ impl AssetInformation {
         &self.asset_kind
     }
 
+    ///Returns the mutable kind of the asset.
+    pub fn get_mut_asset_kind(&mut self) -> &mut AssetKind {
+        &mut self.asset_kind
+    }
+
     ///Sets the identifier of the asset which is represented by the asset administration shell.
     /// [global_asset_id]: identifier of the asset
     pub fn set_global_asset_id(&mut self, global_asset_id: String) {
@@ -60,6 +65,12 @@ impl AssetInformation {
         self.global_asset_id.as_ref()
     }
 
+    ///Returns the mutable identifier of the asset which is represented by the asset administration
+    /// shell.
+    pub fn get_mut_global_asset_id(&mut self) -> Option<&mut String> {
+        self.global_asset_id.as_mut()
+    }
+
     ///Sets the additional domain specific, typically proprietary identifiers for the asset.
     /// [specific_asset_ids]: list of additional identifiers
     pub fn set_specific_asset_ids(&mut self, specific_asset_ids: Vec<SpecificAssetId>) {
@@ -69,6 +80,12 @@ impl AssetInformation {
     ///Returns the additional domain specific, typically proprietary identifiers for the asset.
     pub fn get_specific_asset_ids(&self) -> &Vec<SpecificAssetId> {
         &self.specific_asset_ids
+    }
+
+    ///Returns the mutable additional domain specific, typically proprietary identifiers for the
+    /// asset.
+    pub fn get_mut_specific_asset_ids(&mut self) -> &mut Vec<SpecificAssetId> {
+        &mut self.specific_asset_ids
     }
 
     ///Adds an additional, domain specific, typically proprietary identifier for the asset.
@@ -93,6 +110,11 @@ impl AssetInformation {
         self.asset_type.as_ref()
     }
 
+    ///Returns the mutable type of the asset.
+    pub fn get_mut_asset_type(&mut self) -> Option<&mut String> {
+        self.asset_type.as_mut()
+    }
+
     ///Sets the thumbnail of the asset represented by the AAS.
     /// [thumbnail]: thumbnail
     pub fn set_default_thumbnail(&mut self, thumbnail: Resource) {
@@ -102,5 +124,10 @@ impl AssetInformation {
     ///Returns the optional thumbnail of the asset represented by the AAS.
     pub fn get_default_thumbnail(&self) -> Option<&Resource> {
         self.default_thumbnail.as_ref()
+    }
+
+    ///Returns the mutable optional thumbnail of the asset represented by the AAS.
+    pub fn get_mut_default_thumbnail(&mut self) -> Option<&mut Resource> {
+        self.default_thumbnail.as_mut()
     }
 }

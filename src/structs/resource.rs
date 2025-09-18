@@ -32,6 +32,11 @@ impl Resource {
         &self.path
     }
 
+    ///Returns the mutable path and name of the resource.
+    pub fn get_mut_path(&mut self) -> &mut String {
+        &mut self.path
+    }
+
     ///Sets the content type of the content of the file.
     /// [content_type]: content type of the content
     pub fn set_content_type(&mut self, content_type: String) {
@@ -41,5 +46,10 @@ impl Resource {
     ///Returns the content type of the content of the file.
     pub fn get_content_type(&self) -> Option<&String> {
         self.content_type.as_ref()
+    }
+
+    ///Returns the mutable content type of the content of the file.
+    pub fn get_mut_content_type(&mut self) -> Option<&mut String> {
+        self.content_type.as_mut()
     }
 }

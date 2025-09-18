@@ -26,11 +26,19 @@ impl Key {
         &self.key_type
     }
     
+    pub fn get_mut_key_type(&mut self) -> &mut KeyType {
+        &mut self.key_type
+    }
+    
     pub fn set_value(&mut self, value: String) {
         self.value = value;
     }
     
     pub fn get_value(&self) -> &String {
         &self.value
+    }
+    
+    pub fn get_mut_value(&mut self) -> &mut String {
+        &mut self.value
     }
 }

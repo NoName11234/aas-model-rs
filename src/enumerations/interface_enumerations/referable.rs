@@ -151,6 +151,57 @@ impl Referable {
         }
     }
 
+    pub fn get_mut_category(&mut self) -> Option<&mut String> {
+        match self {
+            Referable::AnnotatedRelationshipElement(elem) => elem.get_mut_category(),
+            Referable::AssetAdministrationShell(elem) => elem.get_mut_category(),
+            Referable::BasicEventElement(elem) => elem.get_mut_category(),
+            Referable::Blob(elem) => elem.get_mut_category(),
+            Referable::Capability(elem) => elem.get_mut_category(),
+            Referable::ConceptDescription(elem) => elem.get_mut_category(),
+            Referable::DataElement(elem) => {
+                match elem {
+                    DataElement::Property(data_elem) => data_elem.get_mut_category(),
+                    DataElement::MultiLanguageProperty(data_elem) => data_elem.get_mut_category(),
+                    DataElement::Range(data_elem) => data_elem.get_mut_category(),
+                    DataElement::Blob(data_elem) => data_elem.get_mut_category(),
+                    DataElement::File(data_elem) => data_elem.get_mut_category(),
+                    DataElement::ReferenceElement(data_elem) => data_elem.get_mut_category()
+                }
+            },
+            Referable::Entity(elem) => elem.get_mut_category(),
+            Referable::File(elem) => elem.get_mut_category(),
+            Referable::MultiLanguageProperty(elem) => elem.get_mut_category(),
+            Referable::Operation(elem) => elem.get_mut_category(),
+            Referable::Property(elem) => elem.get_mut_category(),
+            Referable::Range(elem) => elem.get_mut_category(),
+            Referable::Referable(elem) => elem.get_mut_category(),
+            Referable::ReferenceElement(elem) => elem.get_mut_category(),
+            Referable::RelationshipElement(elem) => elem.get_mut_category(),
+            Referable::Submodel(elem) => elem.get_mut_category(),
+            Referable::SubmodelElement(elem) => {
+                match elem.as_mut() {
+                    SubmodelElement::RelationshipElement(elem) => elem.get_mut_category(),
+                    SubmodelElement::AnnotatedRelationshipElement(elem) => elem.get_mut_category(),
+                    SubmodelElement::Property(elem) => elem.get_mut_category(),
+                    SubmodelElement::MultiLanguageProperty(elem) => elem.get_mut_category(),
+                    SubmodelElement::Range(elem) => elem.get_mut_category(),
+                    SubmodelElement::Blob(elem) => elem.get_mut_category(),
+                    SubmodelElement::File(elem) => elem.get_mut_category(),
+                    SubmodelElement::ReferenceElement(elem) => elem.get_mut_category(),
+                    SubmodelElement::Capability(elem) => elem.get_mut_category(),
+                    SubmodelElement::SubmodelElementList(elem) => elem.get_mut_category(),
+                    SubmodelElement::SubmodelElementCollection(elem) => elem.get_mut_category(),
+                    SubmodelElement::Entity(elem) => elem.get_mut_category(),
+                    SubmodelElement::BasicEventElement(elem) => elem.get_mut_category(),
+                    SubmodelElement::Operation(elem) => elem.get_mut_category()
+                }
+            },
+            Referable::SubmodelElementCollection(elem) => elem.get_mut_category(),
+            Referable::SubmodelElementList(elem) => elem.get_mut_category()
+        }
+    }
+
     pub fn set_id_short(&mut self, id_short: String) {
         match self {
             Referable::AnnotatedRelationshipElement(elem) => elem.set_id_short(id_short),
@@ -250,6 +301,57 @@ impl Referable {
             },
             Referable::SubmodelElementCollection(elem) => elem.get_id_short(),
             Referable::SubmodelElementList(elem) => elem.get_id_short()
+        }
+    }
+
+    pub fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        match self {
+            Referable::AnnotatedRelationshipElement(elem) => elem.get_mut_id_short(),
+            Referable::AssetAdministrationShell(elem) => elem.get_mut_id_short(),
+            Referable::BasicEventElement(elem) => elem.get_mut_id_short(),
+            Referable::Blob(elem) => elem.get_mut_id_short(),
+            Referable::Capability(elem) => elem.get_mut_id_short(),
+            Referable::ConceptDescription(elem) => elem.get_mut_id_short(),
+            Referable::DataElement(elem) => {
+                match elem {
+                    DataElement::Property(data_elem) => data_elem.get_mut_id_short(),
+                    DataElement::MultiLanguageProperty(data_elem) => data_elem.get_mut_id_short(),
+                    DataElement::Range(data_elem) => data_elem.get_mut_id_short(),
+                    DataElement::Blob(data_elem) => data_elem.get_mut_id_short(),
+                    DataElement::File(data_elem) => data_elem.get_mut_id_short(),
+                    DataElement::ReferenceElement(data_elem) => data_elem.get_mut_id_short()
+                }
+            },
+            Referable::Entity(elem) => elem.get_mut_id_short(),
+            Referable::File(elem) => elem.get_mut_id_short(),
+            Referable::MultiLanguageProperty(elem) => elem.get_mut_id_short(),
+            Referable::Operation(elem) => elem.get_mut_id_short(),
+            Referable::Property(elem) => elem.get_mut_id_short(),
+            Referable::Range(elem) => elem.get_mut_id_short(),
+            Referable::Referable(elem) => elem.get_mut_id_short(),
+            Referable::ReferenceElement(elem) => elem.get_mut_id_short(),
+            Referable::RelationshipElement(elem) => elem.get_mut_id_short(),
+            Referable::Submodel(elem) => elem.get_mut_id_short(),
+            Referable::SubmodelElement(elem) => {
+                match elem.as_mut() {
+                    SubmodelElement::RelationshipElement(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::AnnotatedRelationshipElement(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Property(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::MultiLanguageProperty(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Range(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Blob(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::File(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::ReferenceElement(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Capability(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::SubmodelElementList(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::SubmodelElementCollection(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Entity(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::BasicEventElement(elem) => elem.get_mut_id_short(),
+                    SubmodelElement::Operation(elem) => elem.get_mut_id_short()
+                }
+            },
+            Referable::SubmodelElementCollection(elem) => elem.get_mut_id_short(),
+            Referable::SubmodelElementList(elem) => elem.get_mut_id_short()
         }
     }
 
@@ -457,6 +559,57 @@ impl Referable {
         }
     }
 
+    pub fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        match self {
+            Referable::AnnotatedRelationshipElement(elem) => elem.get_mut_display_name(),
+            Referable::AssetAdministrationShell(elem) => elem.get_mut_display_name(),
+            Referable::BasicEventElement(elem) => elem.get_mut_display_name(),
+            Referable::Blob(elem) => elem.get_mut_display_name(),
+            Referable::Capability(elem) => elem.get_mut_display_name(),
+            Referable::ConceptDescription(elem) => elem.get_mut_display_name(),
+            Referable::DataElement(elem) => {
+                match elem {
+                    DataElement::Property(data_elem) => data_elem.get_mut_display_name(),
+                    DataElement::MultiLanguageProperty(data_elem) => data_elem.get_mut_display_name(),
+                    DataElement::Range(data_elem) => data_elem.get_mut_display_name(),
+                    DataElement::Blob(data_elem) => data_elem.get_mut_display_name(),
+                    DataElement::File(data_elem) => data_elem.get_mut_display_name(),
+                    DataElement::ReferenceElement(data_elem) => data_elem.get_mut_display_name()
+                }
+            },
+            Referable::Entity(elem) => elem.get_mut_display_name(),
+            Referable::File(elem) => elem.get_mut_display_name(),
+            Referable::MultiLanguageProperty(elem) => elem.get_mut_display_name(),
+            Referable::Operation(elem) => elem.get_mut_display_name(),
+            Referable::Property(elem) => elem.get_mut_display_name(),
+            Referable::Range(elem) => elem.get_mut_display_name(),
+            Referable::Referable(elem) => elem.get_mut_display_name(),
+            Referable::ReferenceElement(elem) => elem.get_mut_display_name(),
+            Referable::RelationshipElement(elem) => elem.get_mut_display_name(),
+            Referable::Submodel(elem) => elem.get_mut_display_name(),
+            Referable::SubmodelElement(elem) => {
+                match elem.as_mut() {
+                    SubmodelElement::RelationshipElement(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::AnnotatedRelationshipElement(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Property(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::MultiLanguageProperty(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Range(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Blob(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::File(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::ReferenceElement(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Capability(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::SubmodelElementList(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::SubmodelElementCollection(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Entity(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::BasicEventElement(elem) => elem.get_mut_display_name(),
+                    SubmodelElement::Operation(elem) => elem.get_mut_display_name()
+                }
+            },
+            Referable::SubmodelElementCollection(elem) => elem.get_mut_display_name(),
+            Referable::SubmodelElementList(elem) => elem.get_mut_display_name()
+        }
+    }
+
     pub fn set_description(&mut self, description: Vec<MultiLanguageTextType>) {
         match self {
             Referable::AnnotatedRelationshipElement(elem) => elem.set_description(description),
@@ -658,6 +811,57 @@ impl Referable {
             },
             Referable::SubmodelElementCollection(elem) => elem.get_description(),
             Referable::SubmodelElementList(elem) => elem.get_description()
+        }
+    }
+
+    pub fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        match self {
+            Referable::AnnotatedRelationshipElement(elem) => elem.get_mut_description(),
+            Referable::AssetAdministrationShell(elem) => elem.get_mut_description(),
+            Referable::BasicEventElement(elem) => elem.get_mut_description(),
+            Referable::Blob(elem) => elem.get_mut_description(),
+            Referable::Capability(elem) => elem.get_mut_description(),
+            Referable::ConceptDescription(elem) => elem.get_mut_description(),
+            Referable::DataElement(elem) => {
+                match elem {
+                    DataElement::Property(data_elem) => data_elem.get_mut_description(),
+                    DataElement::MultiLanguageProperty(data_elem) => data_elem.get_mut_description(),
+                    DataElement::Range(data_elem) => data_elem.get_mut_description(),
+                    DataElement::Blob(data_elem) => data_elem.get_mut_description(),
+                    DataElement::File(data_elem) => data_elem.get_mut_description(),
+                    DataElement::ReferenceElement(data_elem) => data_elem.get_mut_description()
+                }
+            },
+            Referable::Entity(elem) => elem.get_mut_description(),
+            Referable::File(elem) => elem.get_mut_description(),
+            Referable::MultiLanguageProperty(elem) => elem.get_mut_description(),
+            Referable::Operation(elem) => elem.get_mut_description(),
+            Referable::Property(elem) => elem.get_mut_description(),
+            Referable::Range(elem) => elem.get_mut_description(),
+            Referable::Referable(elem) => elem.get_mut_description(),
+            Referable::ReferenceElement(elem) => elem.get_mut_description(),
+            Referable::RelationshipElement(elem) => elem.get_mut_description(),
+            Referable::Submodel(elem) => elem.get_mut_description(),
+            Referable::SubmodelElement(elem) => {
+                match elem.as_mut() {
+                    SubmodelElement::RelationshipElement(elem) => elem.get_mut_description(),
+                    SubmodelElement::AnnotatedRelationshipElement(elem) => elem.get_mut_description(),
+                    SubmodelElement::Property(elem) => elem.get_mut_description(),
+                    SubmodelElement::MultiLanguageProperty(elem) => elem.get_mut_description(),
+                    SubmodelElement::Range(elem) => elem.get_mut_description(),
+                    SubmodelElement::Blob(elem) => elem.get_mut_description(),
+                    SubmodelElement::File(elem) => elem.get_mut_description(),
+                    SubmodelElement::ReferenceElement(elem) => elem.get_mut_description(),
+                    SubmodelElement::Capability(elem) => elem.get_mut_description(),
+                    SubmodelElement::SubmodelElementList(elem) => elem.get_mut_description(),
+                    SubmodelElement::SubmodelElementCollection(elem) => elem.get_mut_description(),
+                    SubmodelElement::Entity(elem) => elem.get_mut_description(),
+                    SubmodelElement::BasicEventElement(elem) => elem.get_mut_description(),
+                    SubmodelElement::Operation(elem) => elem.get_mut_description()
+                }
+            },
+            Referable::SubmodelElementCollection(elem) => elem.get_mut_description(),
+            Referable::SubmodelElementList(elem) => elem.get_mut_description()
         }
     }
 }

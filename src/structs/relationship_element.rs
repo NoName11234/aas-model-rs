@@ -66,6 +66,11 @@ impl RelationshipElement {
         self.first.as_ref()
     }
 
+    ///Returns the mutable first element in the relationship.
+    pub fn get_mut_first(&mut self) -> Option<&mut Reference> {
+        self.first.as_mut()
+    }
+
     ///Sets the second element in the relationship.
     ///
     /// [second]: reference to the second element in the relationship
@@ -76,6 +81,11 @@ impl RelationshipElement {
     ///Returns the second element in the relationship.
     pub fn get_second(&self) -> Option<&Reference> {
         self.second.as_ref()
+    }
+
+    ///Returns the mutable second element in the relationship.
+    pub fn get_mut_second(&mut self) -> Option<&mut Reference> {
+        self.second.as_mut()
     }
 }
 
@@ -88,6 +98,10 @@ impl TReferable for RelationshipElement {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -96,12 +110,20 @@ impl TReferable for RelationshipElement {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -120,6 +142,10 @@ impl TReferable for RelationshipElement {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -132,6 +158,10 @@ impl TReferable for RelationshipElement {
 impl THasExtensions for RelationshipElement {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -148,12 +178,16 @@ impl THasExtensions for RelationshipElement {
 }
 
 impl THasSemantics for RelationshipElement {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
+    }
+
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
     }
 
     fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
@@ -164,8 +198,12 @@ impl THasSemantics for RelationshipElement {
         &self.supplemental_semantic_ids
     }
 
-    fn add_supplemental_semantic_id(&mut self, supplemental_semantic_id: Reference) {
-        self.supplemental_semantic_ids.push(supplemental_semantic_id);
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
+    }
+
+    fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {
+        self.supplemental_semantic_ids.push(semantic_id);
     }
 
     fn remove_supplemental_semantic_id(&mut self, index: usize) -> Reference {
@@ -182,6 +220,10 @@ impl TQualifiable for RelationshipElement {
         &self.qualifiers
     }
 
+    fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        &mut self.qualifiers
+    }
+
     fn add_qualifier(&mut self, qualifier: Qualifier) {
         self.qualifiers.push(qualifier);
     }
@@ -194,6 +236,10 @@ impl TQualifiable for RelationshipElement {
 impl THasDataSpecification for RelationshipElement {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {

@@ -6,6 +6,8 @@ use crate::structs::reference::Reference;
 pub trait THasDataSpecification {
     ///Returns a list of external references to the data specification templates used by the element.
     fn get_data_specifications(&self) -> &Vec<Reference>;
+    ///Returns a mutable list of external references to the data specification templates used by the element.
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference>;
     ///Sets the list of external references to the data specification templates used by the element.
     /// [data_specifications]: list of external references
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>);

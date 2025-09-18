@@ -74,9 +74,14 @@ impl Entity {
         self.statements = statements;
     }
 
-    ///Returns list of statements applicable to the entity.
+    ///Returns the list of statements applicable to the entity.
     pub fn get_statements(&self) -> &Vec<SubmodelElement> {
         &self.statements
+    }
+
+    ///Returns the mutable list of statements applicable to the entity.
+    pub fn get_mut_statements(&mut self) -> &mut Vec<SubmodelElement> {
+        &mut self.statements
     }
 
     ///Adds a statement applicable to the entity.
@@ -103,6 +108,11 @@ impl Entity {
         self.entity_type.as_ref()
     }
 
+    ///Returns the mutable type of the entity.
+    pub fn get_mut_entity_type(&mut self) -> Option<&mut EntityType> {
+        self.entity_type.as_mut()
+    }
+
     ///Sets the global identifier of the asset the entity is representing.
     ///
     /// [global_asset_id]: global identifier
@@ -113,6 +123,11 @@ impl Entity {
     ///Returns the global identifier of the asset the entity is representing.
     pub fn get_global_asset_id(&self) -> Option<&String> {
         self.global_asset_id.as_ref()
+    }
+    
+    ///Returns the global identifier of the asset the entity is representing.
+    pub fn get_mut_global_asset_id(&mut self) -> Option<&mut String> {
+        self.global_asset_id.as_mut()
     }
 
     ///Sets the list of specific asset IDs representing a supplementary identifier.
@@ -125,6 +140,11 @@ impl Entity {
     ///Returns the list of specific asset IDs representing a supplementary identifier.
     pub fn get_specific_asset_ids(&self) -> &Vec<SpecificAssetId> {
         &self.specific_asset_ids
+    }
+    
+    ///Returns the mutable list of specific asset IDs representing a supplementary identifier.
+    pub fn get_mut_specific_asset_ids(&mut self) -> &mut Vec<SpecificAssetId> {
+        &mut self.specific_asset_ids
     }
 
     ///Adds a specific asset ID of a supplementary identifier.
@@ -149,6 +169,10 @@ impl TReferable for Entity {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -157,12 +181,20 @@ impl TReferable for Entity {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -181,6 +213,10 @@ impl TReferable for Entity {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -195,6 +231,10 @@ impl THasExtensions for Entity {
         &self.extensions
     }
 
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
+    }
+
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
         self.extensions = extensions;
     }
@@ -203,19 +243,22 @@ impl THasExtensions for Entity {
         self.extensions.push(extension);
     }
 
-
     fn remove_extension(&mut self, index: usize) -> Extension {
         self.extensions.remove(index)
     }
 }
 
 impl THasSemantics for Entity {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
+    }
+
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
     }
 
     fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
@@ -226,8 +269,12 @@ impl THasSemantics for Entity {
         &self.supplemental_semantic_ids
     }
 
-    fn add_supplemental_semantic_id(&mut self, supplemental_semantic_id: Reference) {
-        self.supplemental_semantic_ids.push(supplemental_semantic_id);
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
+    }
+
+    fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {
+        self.supplemental_semantic_ids.push(semantic_id);
     }
 
     fn remove_supplemental_semantic_id(&mut self, index: usize) -> Reference {
@@ -244,6 +291,10 @@ impl TQualifiable for Entity {
         &self.qualifiers
     }
 
+    fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        &mut self.qualifiers
+    }
+
     fn add_qualifier(&mut self, qualifier: Qualifier) {
         self.qualifiers.push(qualifier);
     }
@@ -258,6 +309,10 @@ impl THasDataSpecification for Entity {
         &self.data_specifications
     }
 
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
+    }
+
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {
         self.data_specifications = data_specifications;
     }
@@ -265,7 +320,7 @@ impl THasDataSpecification for Entity {
     fn add_data_specification(&mut self, data_specification: Reference) {
         self.data_specifications.push(data_specification);
     }
-    
+
     fn remove_data_specification(&mut self, index: usize) -> Reference {
         self.data_specifications.remove(index)
     }

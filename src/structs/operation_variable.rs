@@ -29,4 +29,9 @@ impl OperationVariable {
     pub fn get_value(&self) -> &SubmodelElement {
         &self.value
     }
+
+    ///Returns the mutable description of the operation variable.
+    pub fn get_mut_value(&mut self) -> &mut SubmodelElement {
+        &mut self.value
+    }
 }

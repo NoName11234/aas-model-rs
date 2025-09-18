@@ -90,6 +90,29 @@ impl HasSemantics {
             HasSemantics::BasicEventElement(elem) => elem.get_semantic_id()
         }
     }
+    
+    pub fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        match self {
+            HasSemantics::Submodel(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Qualifier(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Extension(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::SubmodelElementCollection(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::RelationshipElement(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::ReferenceElement(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Property(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::MultiLanguageProperty(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::AnnotatedRelationshipElement(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Entity(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Operation(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Range(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Blob(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::File(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::SubmodelElementList(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::SpecificAssetId(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::Capability(elem) => elem.get_mut_semantic_id(),
+            HasSemantics::BasicEventElement(elem) => elem.get_mut_semantic_id()
+        }
+    }
 
     pub fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
         match self {
@@ -134,6 +157,29 @@ impl HasSemantics {
             HasSemantics::SpecificAssetId(elem) => elem.get_supplemental_semantic_ids(),
             HasSemantics::Capability(elem) => elem.get_supplemental_semantic_ids(),
             HasSemantics::BasicEventElement(elem) => elem.get_supplemental_semantic_ids()
+        }
+    }
+    
+    pub fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        match self {
+            HasSemantics::Submodel(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Qualifier(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Extension(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::SubmodelElementCollection(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::RelationshipElement(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::ReferenceElement(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Property(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::MultiLanguageProperty(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::AnnotatedRelationshipElement(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Entity(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Operation(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Range(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Blob(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::File(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::SubmodelElementList(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::SpecificAssetId(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::Capability(elem) => elem.get_mut_supplemental_semantic_ids(),
+            HasSemantics::BasicEventElement(elem) => elem.get_mut_supplemental_semantic_ids()
         }
     }
 

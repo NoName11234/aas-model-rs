@@ -28,6 +28,10 @@ impl Reference {
     pub fn get_reference_type(&self) -> &ReferenceType {
         &self.reference_type
     }
+    
+    pub fn get_mut_reference_type(&mut self) -> &mut ReferenceType {
+        &mut self.reference_type
+    }
 
     pub fn set_referred_semantic_id(&mut self, referred_semantic_id: Box<Reference>) {
         self.referred_semantic_id = Some(referred_semantic_id);
@@ -39,6 +43,10 @@ impl Reference {
 
     pub fn get_keys(&self) -> &Vec<Key> {
         &self.keys
+    }
+    
+    pub fn get_mut_keys(&mut self) -> &mut Vec<Key> {
+        &mut self.keys
     }
 
     pub fn add_key(&mut self, key: Key) {

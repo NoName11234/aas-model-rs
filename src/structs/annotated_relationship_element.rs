@@ -71,6 +71,11 @@ impl AnnotatedRelationshipElement {
         &self.annotations
     }
 
+    ///Returns the mutable list of data elements representing annotations.
+    pub fn get_mut_data_elements(&mut self) -> &mut Vec<DataElement> {
+        &mut self.annotations
+    }
+
     ///Adds a data element representing an annotation.
     /// [annotation]: annotation
     pub fn add_data_element(&mut self, annotation: DataElement) {
@@ -94,6 +99,10 @@ impl TReferable for AnnotatedRelationshipElement {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -102,12 +111,20 @@ impl TReferable for AnnotatedRelationshipElement {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -126,6 +143,10 @@ impl TReferable for AnnotatedRelationshipElement {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -138,6 +159,10 @@ impl TReferable for AnnotatedRelationshipElement {
 impl THasExtensions for AnnotatedRelationshipElement {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -162,12 +187,20 @@ impl THasSemantics for AnnotatedRelationshipElement {
         self.semantic_id.as_ref()
     }
 
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
+    }
+
     fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
         self.supplemental_semantic_ids = supplemental_semantic_ids;
     }
 
     fn get_supplemental_semantic_ids(&self) -> &Vec<Reference> {
         &self.supplemental_semantic_ids
+    }
+
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
     }
 
     fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {
@@ -188,6 +221,10 @@ impl TQualifiable for AnnotatedRelationshipElement {
         &self.qualifiers
     }
 
+    fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        &mut self.qualifiers
+    }
+
     fn add_qualifier(&mut self, qualifier: Qualifier) {
         self.qualifiers.push(qualifier);
     }
@@ -200,6 +237,10 @@ impl TQualifiable for AnnotatedRelationshipElement {
 impl THasDataSpecification for AnnotatedRelationshipElement {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {
@@ -224,11 +265,19 @@ impl TRelationshipElement for AnnotatedRelationshipElement {
         self.first.as_ref()
     }
 
+    fn get_mut_first(&mut self) -> Option<&mut Reference> {
+        self.first.as_mut()
+    }
+
     fn set_second(&mut self, second: Reference) {
         self.second = Some(second);
     }
 
     fn get_second(&self) -> Option<&Reference> {
         self.second.as_ref()
+    }
+
+    fn get_mut_second(&mut self) -> Option<&mut Reference> {
+        self.second.as_mut()
     }
 }

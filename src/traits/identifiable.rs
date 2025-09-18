@@ -8,9 +8,13 @@ pub trait TIdentifiable: TReferable {
     fn set_administration(&mut self, administrative_information: AdministrativeInformation);
     ///Returns the administrative information of an identifiable element.
     fn get_administration(&self) -> Option<&AdministrativeInformation>;
+    ///Returns the mutable administrative information of an identifiable element.
+    fn get_mut_administration(&mut self) -> Option<&mut AdministrativeInformation>;
     ///Sets the globally unique identification of the element.
     /// [id]: globally unique identification
     fn set_id(&mut self, id: String);
     ///Returns the globally unique identification of the element.
     fn get_id(&self) -> &String;
+    ///Returns the mutable globally unique identification of the element.
+    fn get_mut_id(&mut self) -> &mut String;
 }

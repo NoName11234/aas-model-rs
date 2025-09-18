@@ -10,6 +10,9 @@ pub trait THasSemantics {
     ///Returns the identifier of the semantic definition of the element called semantic ID or also
     /// main semantic ID of the element.
     fn get_semantic_id(&self) -> Option<&Reference>;
+    ///Returns the mutable identifier of the semantic definition of the element called semantic ID
+    /// or also main semantic ID of the element.
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference>;
     ///Sets the identifiers of supplemental semantic definitions of the element called supplemental
     /// semantic ID of the element.
     /// [supplemental_semantic_ids]: list of identifiers of supplemental semantic definitions
@@ -17,6 +20,9 @@ pub trait THasSemantics {
     ///Returns the identifiers of supplemental semantic definitions of the element called
     /// supplemental semantic ID of the element.
     fn get_supplemental_semantic_ids(&self) -> &Vec<Reference>;
+    ///Returns the mutable identifiers of supplemental semantic definitions of the element called
+    /// supplemental semantic ID of the element.
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference>;
     ///Adds an identifier of a supplemental semantic definition of the element called supplemental
     /// semantic ID of the element.
     /// [supplemental_semantic_id]: identifier of a supplemental semantic definition

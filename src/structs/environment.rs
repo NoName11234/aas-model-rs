@@ -39,6 +39,11 @@ impl Environment {
         &self.asset_administration_shells
     }
 
+    ///Returns the mutable list of asset administration shells.
+    pub fn get_mut_asset_administration_shells(&mut self) -> &mut Vec<AssetAdministrationShell> {
+        &mut self.asset_administration_shells
+    }
+
     ///Adds an asset administration shell to the list.
     ///
     /// [aas]: asset administration shell
@@ -63,6 +68,11 @@ impl Environment {
         &self.submodels
     }
 
+    ///Returns the list of mutable submodels.
+    pub fn get_mut_submodels(&mut self) -> &mut Vec<Submodel> {
+        &mut self.submodels
+    }
+
     ///Adds a submodel to the list.
     ///
     /// [submodel]: submodel to add
@@ -85,6 +95,11 @@ impl Environment {
     ///Returns the list of concept descriptions.
     pub fn get_concept_descriptions(&self) -> &Vec<ConceptDescription> {
         &self.concept_descriptions
+    }
+
+    ///Returns the mutable list of concept descriptions.
+    pub fn get_mut_concept_descriptions(&mut self) -> &mut Vec<ConceptDescription> {
+        &mut self.concept_descriptions
     }
 
     ///Adds a concept description to the list.

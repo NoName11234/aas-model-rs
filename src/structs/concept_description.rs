@@ -62,6 +62,12 @@ impl ConceptDescription {
         &self.is_case_of
     }
 
+    ///Returns the mutable list of references to external definitions the concept is compatible to
+    /// or was derived from.
+    pub fn get_mut_is_case_ofs(&mut self) -> &mut Vec<Reference> {
+        &mut self.is_case_of
+    }
+
     ///Adds a reference to an external definition the concept is compatible to or was derived from.
     ///
     /// [is_case_of]: reference to external definition
@@ -79,6 +85,10 @@ impl ConceptDescription {
 impl THasDataSpecification for ConceptDescription {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {
@@ -103,6 +113,10 @@ impl TReferable for ConceptDescription {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -111,12 +125,20 @@ impl TReferable for ConceptDescription {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -135,6 +157,10 @@ impl TReferable for ConceptDescription {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -147,6 +173,10 @@ impl TReferable for ConceptDescription {
 impl THasExtensions for ConceptDescription {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -171,11 +201,19 @@ impl TIdentifiable for ConceptDescription {
         self.administrative_information.as_ref()
     }
 
+    fn get_mut_administration(&mut self) -> Option<&mut AdministrativeInformation> {
+        self.administrative_information.as_mut()
+    }
+
     fn set_id(&mut self, id: String) {
         self.id_short = Some(id);
     }
 
     fn get_id(&self) -> &String {
         &self.id
+    }
+
+    fn get_mut_id(&mut self) -> &mut String {
+        &mut self.id
     }
 }

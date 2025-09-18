@@ -23,6 +23,12 @@ impl RelationshipElement {
         }
     }
     
+    pub fn get_mut_first(&mut self) -> Option<&mut Reference> {
+        match self {
+            RelationshipElement::AnnotatedRelationshipElement(elem) => elem.get_mut_first()
+        }
+    }
+    
     pub fn set_second(&mut self, second: Reference) {
         match self { 
             RelationshipElement::AnnotatedRelationshipElement(elem) => elem.set_second(second)
@@ -32,6 +38,12 @@ impl RelationshipElement {
     pub fn get_second(&self) -> Option<&Reference> {
         match self { 
             RelationshipElement::AnnotatedRelationshipElement(elem) => elem.get_second()
+        }
+    }
+    
+    pub fn get_mut_second(&mut self) -> Option<&mut Reference> {
+        match self { 
+            RelationshipElement::AnnotatedRelationshipElement(elem) => elem.get_mut_second()
         }
     }
 }

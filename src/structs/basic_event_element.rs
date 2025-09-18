@@ -97,6 +97,11 @@ impl BasicEventElement {
         &self.observed
     }
 
+    ///Returns the mutable reference to the referable being observed.
+    pub fn get_mut_observed(&mut self) -> &mut Reference {
+        &mut self.observed
+    }
+
     ///Sets the direction of the event.
     ///
     /// [direction]: direction of event
@@ -107,6 +112,11 @@ impl BasicEventElement {
     ///Returns the direction of the event.
     pub fn get_direction(&self) -> &Direction {
         &self.direction
+    }
+
+    ///Returns the mutable direction of the event.
+    pub fn get_mut_direction(&mut self) -> &mut Direction {
+        &mut self.direction
     }
 
     ///Sets the state of the event.
@@ -121,6 +131,11 @@ impl BasicEventElement {
         &self.state
     }
 
+    ///Returns the mutable state of the event.
+    pub fn get_mut_state(&mut self) -> &mut StateOfEvent {
+        &mut self.state
+    }
+
     ///Sets the information for the outer message infrastructure.
     ///
     /// [topic]: information for message infrastructure
@@ -131,6 +146,11 @@ impl BasicEventElement {
     ///Returns the information for the outer message infrastructure.
     pub fn get_message_topic(&self) -> Option<&String> {
         self.message_topic.as_ref()
+    }
+
+    ///Returns the mutable information for the outer message infrastructure.
+    pub fn get_mutable_message_topic(&mut self) -> Option<&mut String> {
+        self.message_topic.as_mut()
     }
 
     ///Sets the information about which outer message broker shall be used.
@@ -145,6 +165,11 @@ impl BasicEventElement {
         self.message_broker.as_ref()
     }
 
+    ///Returns the mutable information about which outer message broker shall be used.
+    pub fn get_mut_message_broker(&mut self) -> Option<&mut Referable> {
+        self.message_broker.as_mut()
+    }
+
     ///Sets the timestamp when the last event was received or sent.
     ///
     /// [timestamp]: timestamp
@@ -155,6 +180,11 @@ impl BasicEventElement {
     ///Returns the timestamp when the last event was received or sent.
     pub fn get_last_update(&self) -> Option<&String> {
         self.last_update.as_ref()
+    }
+
+    ///Returns the mutable timestamp when the last event was received or sent.
+    pub fn get_mut_last_update(&mut self) -> Option<&mut String> {
+        self.last_update.as_mut()
     }
 
     ///Sets the minimum interval for the maximum event frequency.
@@ -169,6 +199,11 @@ impl BasicEventElement {
         self.min_interval.as_ref()
     }
 
+    ///Returns the mutable minimum interval for the maximum event frequency.
+    pub fn get_mut_min_interval(&mut self) -> Option<&mut String> {
+        self.min_interval.as_mut()
+    }
+
     ///Sets the maximum interval for messages about the update of the status of the event.
     ///
     /// [interval]: maximum interval
@@ -179,6 +214,11 @@ impl BasicEventElement {
     ///Returns the maximum interval for messages about the update of the status of the event.
     pub fn get_max_interval(&self) -> Option<&String> {
         self.max_interval.as_ref()
+    }
+
+    ///Returns the mutable maximum interval for messages about the update of the status of the event.
+    pub fn get_mut_max_interval(&mut self) -> Option<&mut String> {
+        self.max_interval.as_mut()
     }
 }
 
@@ -193,6 +233,10 @@ impl TReferable for BasicEventElement {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -201,12 +245,20 @@ impl TReferable for BasicEventElement {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -225,6 +277,10 @@ impl TReferable for BasicEventElement {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -237,6 +293,10 @@ impl TReferable for BasicEventElement {
 impl THasExtensions for BasicEventElement {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -253,12 +313,16 @@ impl THasExtensions for BasicEventElement {
 }
 
 impl THasSemantics for BasicEventElement {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
+    }
+
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
     }
 
     fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
@@ -269,8 +333,12 @@ impl THasSemantics for BasicEventElement {
         &self.supplemental_semantic_ids
     }
 
-    fn add_supplemental_semantic_id(&mut self, supplemental_semantic_id: Reference) {
-        self.supplemental_semantic_ids.push(supplemental_semantic_id);
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
+    }
+
+    fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {
+        self.supplemental_semantic_ids.push(semantic_id);
     }
 
     fn remove_supplemental_semantic_id(&mut self, index: usize) -> Reference {
@@ -287,6 +355,10 @@ impl TQualifiable for BasicEventElement {
         &self.qualifiers
     }
 
+    fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        &mut self.qualifiers
+    }
+
     fn add_qualifier(&mut self, qualifier: Qualifier) {
         self.qualifiers.push(qualifier);
     }
@@ -299,6 +371,10 @@ impl TQualifiable for BasicEventElement {
 impl THasDataSpecification for BasicEventElement {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {

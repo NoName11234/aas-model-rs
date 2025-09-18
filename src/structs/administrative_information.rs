@@ -42,6 +42,11 @@ impl AdministrativeInformation {
         self.version.as_ref()
     }
 
+    ///Returns the optional mutable version of the element.
+    pub fn get_mut_version(&mut self) -> Option<&mut String> {
+        self.version.as_mut()
+    }
+
     ///Sets the revision of the element.
     /// [revision]: revision of the element
     pub fn set_revision(&mut self, revision: String) {
@@ -51,6 +56,11 @@ impl AdministrativeInformation {
     ///Returns the optional revision of the element.
     pub fn get_revision(&self) -> Option<&String> {
         self.revision.as_ref()
+    }
+
+    ///Returns the optional mutable revision of the element.
+    pub fn get_mut_revision(&mut self) -> Option<&mut String> {
+        self.revision.as_mut()
     }
 
     ///Sets the creator subject ID of the subject responsible for making the element.
@@ -64,6 +74,12 @@ impl AdministrativeInformation {
         self.creator.as_ref()
     }
 
+    ///Returns the optional mutable creator subject ID of the subject responsible for making the
+    /// element.
+    pub fn get_mut_creator(&mut self) -> Option<&mut Reference> {
+        self.creator.as_mut()
+    }
+
     ///Sets the identifier of the template that guided the creation of the element.
     /// [template_id]: identifier of the template
     pub fn set_template_id(&mut self, template_id: String) {
@@ -74,11 +90,20 @@ impl AdministrativeInformation {
     pub fn get_template_id(&self) -> Option<&String> {
         self.template_id.as_ref()
     }
+
+    ///Returns the mutable identifier of the template that guided the creation of the element.
+    pub fn get_mut_template_id(&mut self) -> Option<&mut String> {
+        self.template_id.as_mut()
+    }
 }
 
 impl THasDataSpecification for AdministrativeInformation {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {

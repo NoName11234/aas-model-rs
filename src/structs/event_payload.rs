@@ -60,6 +60,11 @@ impl EventPayload {
         &self.source
     }
 
+    ///Returns the mutable reference to the source event element.
+    pub fn get_mut_source(&mut self) -> &mut Reference {
+        &mut self.source
+    }
+
     ///Sets the optional semantic ID of the source event element.
     ///
     /// [source_semantic_id]: semantic ID of the source event element
@@ -70,6 +75,11 @@ impl EventPayload {
     ///Returns the optional semantic ID of the source event element.
     pub fn get_source_semantic_id(&self) -> Option<&Reference> {
         self.source_semantic_id.as_ref()
+    }
+
+    ///Returns the optional mutable semantic ID of the source event element.
+    pub fn get_mut_source_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.source_semantic_id.as_mut()
     }
 
     ///Sets the reference to the referable which defines the scope of the event.
@@ -84,6 +94,11 @@ impl EventPayload {
         &self.observable_reference
     }
 
+    ///Returns the mutable reference to the referable which defines the scope of the event.
+    pub fn get_mut_observable_reference(&mut self) -> &mut Reference {
+        &mut self.observable_reference
+    }
+
     ///Sets the optional semantic ID of the referable which defines the scope of the event.
     ///
     /// [observable_semantic_id]: semantic ID of the referable which defines the scope of the event
@@ -94,6 +109,12 @@ impl EventPayload {
     ///Returns the optional semantic ID of the referable which defines the scope of the event.
     pub fn get_observable_semantic_id(&self) -> Option<&Reference> {
         self.observable_semantic_id.as_ref()
+    }
+
+    ///Returns the optional mutable semantic ID of the referable which defines the scope of the
+    /// event.
+    pub fn get_mut_observable_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.observable_semantic_id.as_mut()
     }
 
     ///Sets the optional information for the outer message infrastructure to schedule the event for
@@ -110,6 +131,12 @@ impl EventPayload {
         self.topic.as_ref()
     }
 
+    ///Returns the optional mutable information for the outer message infrastructure to schedule the
+    /// event for the respective communication channel.
+    pub fn get_mut_topic(&mut self) -> Option<&mut String> {
+        self.topic.as_mut()
+    }
+
     ///Sets the optional subject who/which initiated the creation.
     ///
     /// [subject_id]: subject who/which initiated the creation
@@ -120,6 +147,11 @@ impl EventPayload {
     ///Returns the optional subject who/which initiated the creation.
     pub fn get_subject_id(&self) -> Option<&Reference> {
         self.subject_id.as_ref()
+    }
+
+    ///Returns the optional mutable subject who/which initiated the creation.
+    pub fn get_mut_subject_id(&mut self) -> Option<&mut Reference> {
+        self.subject_id.as_mut()
     }
 
     ///Sets the timestamp in UTC when this event was triggered.
@@ -134,6 +166,11 @@ impl EventPayload {
         &self.time_stamp
     }
 
+    ///Returns the mutable timestamp in UTC when this event was triggered.
+    pub fn get_mut_time_stamp(&mut self) -> &mut String {
+        &mut self.time_stamp
+    }
+
     ///Sets the optional event-specific payload.
     ///
     /// [payload]: the event-specific payload
@@ -144,5 +181,10 @@ impl EventPayload {
     ///Returns the optional event-specific payload.
     pub fn get_payload(&self) -> &Vec<u8> {
         &self.payload
+    }
+
+    ///Returns the optional mutable event-specific payload.
+    pub fn get_mut_payload(&mut self) -> &mut Vec<u8> {
+        &mut self.payload
     }
 }

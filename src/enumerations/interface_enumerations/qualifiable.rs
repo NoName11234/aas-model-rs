@@ -78,6 +78,26 @@ impl Qualifiable {
             Qualifiable::SubmodelElementList(elem) => elem.get_qualifiers()
         }
     }
+    
+    pub fn get_mut_qualifiers(&mut self) -> &mut Vec<Qualifier> {
+        match self {
+            Qualifiable::AnnotatedRelationshipElement(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::BasicEventElement(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Blob(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Capability(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Entity(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::File(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::MultiLanguageProperty(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Operation(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Property(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Range(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::ReferenceElement(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::RelationshipElement(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::Submodel(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::SubmodelElementCollection(elem) => elem.get_mut_qualifiers(),
+            Qualifiable::SubmodelElementList(elem) => elem.get_mut_qualifiers()
+        }
+    }
 
     pub fn add_qualifier(&mut self, qualifier: Qualifier) {
         match self {

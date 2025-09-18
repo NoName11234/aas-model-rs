@@ -4,6 +4,8 @@ use crate::structs::extension::Extension;
 pub trait THasExtensions {
     ///Returns a list of extensions of the element.
     fn get_extensions(&self) -> &Vec<Extension>;
+    ///Returns a mutable list of extensions of the element.
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension>;
     ///Sets a list of extensions of the element.
     /// [extensions]: list of extensions
     fn set_extensions(&mut self, extensions: Vec<Extension>);

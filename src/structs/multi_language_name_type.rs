@@ -22,11 +22,19 @@ impl MultiLanguageNameType {
         &self.language
     }
     
+    pub fn get_mut_language(&mut self) -> &mut String {
+        &mut self.language
+    }
+    
     pub fn set_text(&mut self, text: String) {
         self.text = text;
     }
     
     pub fn get_text(&self) -> &String {
         &self.text
+    }
+    
+    pub fn get_mut_text(&mut self) -> &mut String {
+        &mut self.text
     }
 }

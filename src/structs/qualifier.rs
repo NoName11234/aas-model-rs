@@ -55,6 +55,11 @@ impl Qualifier {
         self.kind.as_ref()
     }
 
+    ///Returns the mutable kind of the qualifier that is applied to the element.
+    pub fn get_mut_kind(&mut self) -> Option<&mut QualifierKind> {
+        self.kind.as_mut()
+    }
+
     ///Sets the qualifier type describing the type applied to the element.
     /// [qualifier_type]: qualifier type
     pub fn set_qualifier_type(&mut self, qualifier_type: String) {
@@ -64,6 +69,11 @@ impl Qualifier {
     ///Returns the qualifier type describing the type applied to the element.
     pub fn get_qualifier_type(&self) -> &String {
         &self.qualifier_type
+    }
+
+    ///Returns the mutable qualifier type describing the type applied to the element.
+    pub fn get_mut_qualifier_type(&mut self) -> &mut String {
+        &mut self.qualifier_type
     }
 
     ///Sets the data type of the qualifier value.
@@ -77,6 +87,11 @@ impl Qualifier {
         &self.value_type
     }
 
+    ///Returns the mutable data type of the qualifier value.
+    pub fn get_mut_value_type(&mut self) -> &mut DataTypeDefXsd {
+        &mut self.value_type
+    }
+
     ///Sets the qualifier value.
     /// [value]: value of the qualifier
     pub fn set_value(&mut self, value: String) {
@@ -86,6 +101,11 @@ impl Qualifier {
     ///Returns the qualifier value.
     pub fn get_value(&self) -> Option<&String> {
         self.value.as_ref()
+    }
+
+    ///Returns the mutable qualifier value.
+    pub fn get_mut_value(&mut self) -> Option<&mut String> {
+        self.value.as_mut()
     }
 
     ///Sets the reference to the global unique ID of a coded value.
@@ -98,23 +118,36 @@ impl Qualifier {
     pub fn get_value_id(&self) -> Option<&Reference> {
         self.value_id.as_ref()
     }
+
+    ///Returns the mutable reference to the global unique ID of a coded value.
+    pub fn get_mut_value_id(&mut self) -> Option<&mut Reference> {
+        self.value_id.as_mut()
+    }
 }
 
 impl THasSemantics for Qualifier {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
     }
 
-    fn set_supplemental_semantic_ids(&mut self, semantic_ids: Vec<Reference>) {
-        self.supplemental_semantic_ids = semantic_ids;
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
+    }
+
+    fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
+        self.supplemental_semantic_ids = supplemental_semantic_ids;
     }
 
     fn get_supplemental_semantic_ids(&self) -> &Vec<Reference> {
         &self.supplemental_semantic_ids
+    }
+
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
     }
 
     fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {

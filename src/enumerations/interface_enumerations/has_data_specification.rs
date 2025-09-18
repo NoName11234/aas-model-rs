@@ -68,6 +68,29 @@ impl HasDataSpecification {
         }
     }
     
+    pub fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        match self { 
+            HasDataSpecification::BasicEventElement(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Capability(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::SubmodelElementCollection(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::RelationshipElement(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::ReferenceElement(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Property(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::MultiLanguageProperty(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::AnnotatedRelationshipElement(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::AssetAdministrationShell(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::AdministrativeInformation(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Entity(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Operation(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Range(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Blob(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::File(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::SubmodelElementList(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::Submodel(elem) => elem.get_mut_data_specifications(),
+            HasDataSpecification::ConceptDescription(elem) => elem.get_mut_data_specifications()
+        }
+    }
+    
     pub fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {
         match self {
             HasDataSpecification::BasicEventElement(elem) => elem.set_data_specifications(data_specifications),

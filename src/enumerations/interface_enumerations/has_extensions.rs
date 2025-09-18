@@ -64,6 +64,28 @@ impl HasExtensions {
             HasExtensions::ConceptDescription(elem) => elem.get_extensions()
         }
     }
+    
+    pub fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        match self {
+            HasExtensions::BasicEventElement(elem) => elem.get_mut_extensions(),
+            HasExtensions::Capability(elem) => elem.get_mut_extensions(),
+            HasExtensions::SubmodelElementCollection(elem) => elem.get_mut_extensions(),
+            HasExtensions::RelationshipElement(elem) => elem.get_mut_extensions(),
+            HasExtensions::ReferenceElement(elem) => elem.get_mut_extensions(),
+            HasExtensions::Property(elem) => elem.get_mut_extensions(),
+            HasExtensions::MultiLanguageProperty(elem) => elem.get_mut_extensions(),
+            HasExtensions::AnnotatedRelationshipElement(elem) => elem.get_mut_extensions(),
+            HasExtensions::AssetAdministrationShell(elem) => elem.get_mut_extensions(),
+            HasExtensions::Entity(elem) => elem.get_mut_extensions(),
+            HasExtensions::Operation(elem) => elem.get_mut_extensions(),
+            HasExtensions::Range(elem) => elem.get_mut_extensions(),
+            HasExtensions::Blob(elem) => elem.get_mut_extensions(),
+            HasExtensions::File(elem) => elem.get_mut_extensions(),
+            HasExtensions::SubmodelElementList(elem) => elem.get_mut_extensions(),
+            HasExtensions::Submodel(elem) => elem.get_mut_extensions(),
+            HasExtensions::ConceptDescription(elem) => elem.get_mut_extensions()
+        }
+    }
 
     pub fn set_extensions(&mut self, extensions: Vec<Extension>) {
         match self {

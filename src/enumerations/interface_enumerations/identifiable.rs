@@ -30,6 +30,14 @@ impl Identifiable {
             Identifiable::ConceptDescription(elem) => elem.get_administration()
         }
     }
+    
+    pub fn get_mut_administration(&mut self) -> Option<&mut AdministrativeInformation> {
+        match self { 
+            Identifiable::AssetAdministrationShell(elem) => elem.get_mut_administration(),
+            Identifiable::Submodel(elem) => elem.get_mut_administration(),
+            Identifiable::ConceptDescription(elem) => elem.get_mut_administration()
+        }
+    }
 
     pub fn set_id(&mut self, id: String) {
         match self {
@@ -44,6 +52,14 @@ impl Identifiable {
             Identifiable::AssetAdministrationShell(elem) => elem.get_id(),
             Identifiable::Submodel(elem) => elem.get_id(),
             Identifiable::ConceptDescription(elem) => elem.get_id()
+        }
+    }
+    
+    pub fn get_mut_id(&mut self) -> &mut String {
+        match self {
+            Identifiable::AssetAdministrationShell(elem) => elem.get_mut_id(),
+            Identifiable::Submodel(elem) => elem.get_mut_id(),
+            Identifiable::ConceptDescription(elem) => elem.get_mut_id()
         }
     }
 }

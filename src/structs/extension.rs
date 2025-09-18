@@ -48,6 +48,11 @@ impl Extension {
         &self.name
     }
 
+    ///Returns the mutable name of the extension.
+    pub fn get_mut_name(&mut self) -> &mut String {
+        &mut self.name
+    }
+
     ///Sets the data type of the value attribute of the extension.
     /// [value_type]: data type of the value
     pub fn set_value_type(&mut self, value_type: DataTypeDefXsd) {
@@ -57,6 +62,11 @@ impl Extension {
     ///Returns the data type of the value attribute of the extension.
     pub fn get_value_type(&self) -> Option<&DataTypeDefXsd> {
         self.value_type.as_ref()
+    }
+
+    ///Returns the mutable data type of the value attribute of the extension.
+    pub fn get_mut_value_type(&mut self) -> Option<&mut DataTypeDefXsd> {
+        self.value_type.as_mut()
     }
 
     ///Sets the value of the extension.
@@ -70,6 +80,11 @@ impl Extension {
         self.value.as_ref()
     }
 
+    ///Returns the mutable value of the extension.
+    pub fn get_mut_value(&mut self) -> Option<&mut String> {
+        self.value.as_mut()
+    }
+
     ///Sets the list of references to elements the extension refers to.
     /// [refers_to]: list of references
     pub fn set_refers_to(&mut self, refers_to: Vec<Reference>) {
@@ -79,6 +94,11 @@ impl Extension {
     ///Returns the list of references to elements the extension refers to.
     pub fn get_refers_to(&self) -> &Vec<Reference> {
         &self.refers_to
+    }
+
+    ///Returns the mutable list of references to elements the extension refers to.
+    pub fn get_mut_refers_to(&mut self) -> &mut Vec<Reference> {
+        &mut self.refers_to
     }
 
     ///Adds a reference to an element the extension refers to.
@@ -95,20 +115,28 @@ impl Extension {
 }
 
 impl THasSemantics for Extension {
-    fn set_semantic_id(&mut self, semantic_id: Reference) {
-        self.semantic_id = Some(semantic_id);
+    fn set_semantic_id(&mut self, supplemental_semantic_id: Reference) {
+        self.semantic_id = Some(supplemental_semantic_id);
     }
 
     fn get_semantic_id(&self) -> Option<&Reference> {
         self.semantic_id.as_ref()
     }
 
-    fn set_supplemental_semantic_ids(&mut self, semantic_ids: Vec<Reference>) {
-        self.supplemental_semantic_ids = semantic_ids;
+    fn get_mut_semantic_id(&mut self) -> Option<&mut Reference> {
+        self.semantic_id.as_mut()
+    }
+
+    fn set_supplemental_semantic_ids(&mut self, supplemental_semantic_ids: Vec<Reference>) {
+        self.supplemental_semantic_ids = supplemental_semantic_ids;
     }
 
     fn get_supplemental_semantic_ids(&self) -> &Vec<Reference> {
-        self.supplemental_semantic_ids.as_ref()
+        &self.supplemental_semantic_ids
+    }
+
+    fn get_mut_supplemental_semantic_ids(&mut self) -> &mut Vec<Reference> {
+        &mut self.supplemental_semantic_ids
     }
 
     fn add_supplemental_semantic_id(&mut self, semantic_id: Reference) {

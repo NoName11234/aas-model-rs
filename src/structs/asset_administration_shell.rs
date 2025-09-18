@@ -68,6 +68,12 @@ impl AssetAdministrationShell {
     pub fn get_derived_from(&self) -> Option<&Reference> {
         self.derived_from.as_ref()
     }
+    
+    ///Returns the mutable reference to the asset administration shell which the asset
+    /// administration shell was derived from.
+    pub fn get_mut_derived_from(&mut self) -> Option<&mut Reference> {
+        self.derived_from.as_mut()
+    }
 
     ///Sets the meta information about the asset the AAS is representing.
     /// [asset_information]: meta information about the asset
@@ -80,6 +86,11 @@ impl AssetAdministrationShell {
         &self.asset_information
     }
 
+    ///Returns the mutable meta information about the asset the AAS is representing.
+    pub fn get_mut_asset_information(&mut self) -> &mut AssetInformation {
+        &mut self.asset_information
+    }
+
     ///Sets the references to submodels of the AAS.
     /// [submodels]: references to submodels
     pub fn set_submodels(&mut self, submodels: Vec<Reference>) {
@@ -89,6 +100,11 @@ impl AssetAdministrationShell {
     ///Returns the references to submodels of the AAS.
     pub fn get_submodels(&self) -> &Vec<Reference> {
         &self.submodels
+    }
+
+    ///Returns the mutable references to submodels of the AAS.
+    pub fn get_mut_submodels(&mut self) -> &mut Vec<Reference> {
+        &mut self.submodels
     }
 
     ///Adds a reference to a submodel of the AAS.
@@ -112,6 +128,10 @@ impl TReferable for AssetAdministrationShell {
         self.category.as_ref()
     }
 
+    fn get_mut_category(&mut self) -> Option<&mut String> {
+        self.category.as_mut()
+    }
+
     fn set_id_short(&mut self, id_short: String) {
         self.id_short = Some(id_short);
     }
@@ -120,12 +140,20 @@ impl TReferable for AssetAdministrationShell {
         self.id_short.as_ref()
     }
 
+    fn get_mut_id_short(&mut self) -> Option<&mut String> {
+        self.id_short.as_mut()
+    }
+
     fn set_display_name(&mut self, display_name: Vec<MultiLanguageNameType>) {
         self.display_name = display_name;
     }
 
     fn get_display_name(&self) -> &Vec<MultiLanguageNameType> {
         &self.display_name
+    }
+
+    fn get_mut_display_name(&mut self) -> &mut Vec<MultiLanguageNameType> {
+        &mut self.display_name
     }
 
     fn add_display_name(&mut self, display_name: MultiLanguageNameType) {
@@ -144,6 +172,10 @@ impl TReferable for AssetAdministrationShell {
         &self.description
     }
 
+    fn get_mut_description(&mut self) -> &mut Vec<MultiLanguageTextType> {
+        &mut self.description
+    }
+
     fn add_description(&mut self, description: MultiLanguageTextType) {
         self.description.push(description);
     }
@@ -156,6 +188,10 @@ impl TReferable for AssetAdministrationShell {
 impl THasExtensions for AssetAdministrationShell {
     fn get_extensions(&self) -> &Vec<Extension> {
         &self.extensions
+    }
+
+    fn get_mut_extensions(&mut self) -> &mut Vec<Extension> {
+        &mut self.extensions
     }
 
     fn set_extensions(&mut self, extensions: Vec<Extension>) {
@@ -180,6 +216,10 @@ impl TIdentifiable for AssetAdministrationShell {
         self.administrative_information.as_ref()
     }
 
+    fn get_mut_administration(&mut self) -> Option<&mut AdministrativeInformation> {
+        self.administrative_information.as_mut()
+    }
+
     fn set_id(&mut self, id: String) {
         self.id = id;
     }
@@ -187,11 +227,19 @@ impl TIdentifiable for AssetAdministrationShell {
     fn get_id(&self) -> &String {
         &self.id
     }
+    
+    fn get_mut_id(&mut self) -> &mut String {
+        &mut self.id
+    }
 }
 
 impl THasDataSpecification for AssetAdministrationShell {
     fn get_data_specifications(&self) -> &Vec<Reference> {
         &self.data_specifications
+    }
+    
+    fn get_mut_data_specifications(&mut self) -> &mut Vec<Reference> {
+        &mut self.data_specifications
     }
 
     fn set_data_specifications(&mut self, data_specifications: Vec<Reference>) {
