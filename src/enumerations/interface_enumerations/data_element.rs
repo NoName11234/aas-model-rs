@@ -17,7 +17,3 @@ pub enum DataElement {
     File(File),
     ReferenceElement(ReferenceElement)
 }
-
-impl DataElement {
-
-}

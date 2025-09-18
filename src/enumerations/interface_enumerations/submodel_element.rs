@@ -33,7 +33,3 @@ pub enum SubmodelElement {
     BasicEventElement(BasicEventElement),
     Operation(Operation)
 }
-
-impl SubmodelElement {
-
-}
